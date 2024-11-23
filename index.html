@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSIGHT: Explainable Weakly-Supervised Medical Image Analysis</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="header-content">
+                <h1>INSIGHT: Explainable Weakly-Supervised Medical Image Analysis</h1>
+                <p class="subtitle">
+                    A novel approach to interpretable and efficient medical image analysis using weakly supervised learning.
+                </p>
+                <div class="authors">
+                    <div class="author">
+                        <p class="name">Wenbo Zhang</p>
+                        <p class="institution">University of Rochester</p>
+                    </div>
+                    <div class="author">
+                        <p class="name">Junyu Chen</p>
+                        <p class="institution">University of Rochester</p>
+                    </div>
+                    <div class="author">
+                        <p class="name">Christopher Kanan</p>
+                        <p class="institution">University of Rochester</p>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <a href="path/to/your/paper.pdf" class="btn primary-btn" target="_blank">
+                        <i class="fa fa-file-pdf-o"></i> Paper
+                    </a>
+                    <a href="https://github.com/Zhangdylan83/Insight" class="btn secondary-btn" target="_blank">
+                        <i class="fa fa-github"></i> Code
+                    </a>
+                </div>
+                
+            </div>
+        </header>
+        
+        
+
+        <!-- Navigation Links -->
+        <nav>
+            <ul class="navigation">
+                <li><a href="#motivation">Motivation</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#visualization">Visualization</a></li>
+                <li><a href="#visualization">Performance</a></li>
+                <li><a href="#acknowledgement">Acknowledgement</a></li>
+                
+            </ul>
+        </nav>
+
+        <!-- Motivation Section -->
+        <section id="motivation" class="section">
+            <h2>Motivation</h2>
+            <p id="motivation-text">
+                The rapid growth of medical imaging data has presented significant challenges for developing diagnostic systems that are both accurate and interpretable.
+                Traditional methods often rely on fully supervised approaches that require dense annotations, which are labor-intensive and costly to obtain.
+                Moreover, existing aggregators, such as those based on multiple-instance learning (MIL), struggle to achieve a balance between classification accuracy and spatial calibration.
+                While they can identify regions of interest, they typically depend on post-hoc visualization methods like Grad-CAM to generate interpretable outputs.
+                This reliance on external tools introduces additional complexity and fails to integrate interpretability as a core feature of the model.
+                </span>
+            </p>
+        </section>
+
+        <section id="about" class="section">
+            <h2>About INSIGHT</h2>
+            <p id="insight-text">
+                INSIGHT (Integrated Network for Segmentation and Interpretation with Generalized Heatmap Transmission) is a novel framework designed to analyze large-scale medical images, such as whole-slide pathology images (WSIs) and volumetric CT scans, while maintaining interpretability for clinicians. 
+                <span id="more-text" style="display: none;">
+                    It addresses the limitations of traditional methods by embedding interpretability directly into its architecture, eliminating the need for post-hoc visualization tools like Grad-CAM. 
+                    INSIGHT combines fine-grained local feature detection with broader contextual awareness through two key modules: 
+                    the Detection Module, which captures small, diagnostically critical details, 
+                    and the Context Module, which suppresses irrelevant activations by incorporating global contextual information. 
+                    This design enables INSIGHT to generate heatmaps that closely align with ground-truth diagnostic regions, offering both accuracy and transparency. 
+                    By requiring only image-level labels, INSIGHT significantly reduces the annotation burden while delivering state-of-the-art classification and weakly supervised segmentation performance.
+                </span>
+            </p>
+            <button id="read-more-btn" class="btn secondary-btn">Read More</button>
+        </section>
+
+        <!-- Visualization Section -->
+        <section id="visualization" class="section">
+            <h2>Visualization</h2>
+            <p>
+                Below is an example of the heatmaps generated by INSIGHT, highlighting diagnostically relevant regions.
+            </p>
+            <div class="carousel">
+                <img src="/imgs/test_001_zoom.png" alt="Heatmap 3" class="carousel-img" style="display: none;">
+                <img src="/imgs/WSI_heatmap.png" alt="Heatmap 1" class="carousel-img">
+                <img src="/imgs/Zoomed_in_heatmap.png" alt="Heatmap 2" class="carousel-img" style="display: none;">
+            </div>
+            <div class="carousel-controls">
+                <button id="prev-btn" class="btn secondary-btn">Previous</button>
+                <button id="next-btn" class="btn secondary-btn">Next</button>
+            </div>
+        </section>
+
+        <section id="performance" class="section">
+            <h2>Quantitative Performance</h2>
+            <p>
+                INSIGHT demonstrates exceptional performance across multiple datasets, including MosMed, CAMELYON16, and BRACS. Below is a summary of its results:
+            </p>
+            <div class="insight-performance">
+                <div class="dataset">
+                    <h3>MosMed</h3>
+                    <ul>
+                        <li>Classification AUC: <strong>0.962 ± 0.012</strong></li>
+                        <li>Segmentation Dice: <strong>42.7 ± 15.3</strong></li>
+                    </ul>
+                    <p class="note">
+                        <em>5-fold cross-validation for classification.</em>
+                    </p>
+                </div>
+                <div class="dataset">
+                    <h3>CAMELYON16</h3>
+                    <ul>
+                        <li>AUC: <strong>0.990</strong></li>
+                        <li>Dice: <strong>74.6 ± 19.1</strong></li>
+                    </ul>
+                    <p class="note">
+                        <!--<em>Uses pixel-level annotations for segmentation performance.</em>-->
+                    </p>
+                </div>
+                <div class="dataset">
+                    <h3>BRACS</h3>
+                    <ul>
+                        <li>ADH AUC: <strong>0.734</strong></li>
+                        <li>FEA AUC: <strong>0.790</strong></li>
+                        <li>DCIS AUC: <strong>0.837</strong></li>
+                        <li>Invasive AUC: <strong>0.999</strong></li>
+                    </ul>
+                    <p class="note">
+                        <em>BRACS does not include detailed segmentation annotations</em>
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+
+        <section id="acknowledgement" class="section">
+            <h2>Acknowledgments</h2>
+            <p>
+                This work was supported in part by NSF award #2326491. The views and conclusions contained herein are those of the authors and should not be interpreted as the official policies or endorsements of any sponsor. We thank Jhair Gallardo and Shikhar Srivastava for their comments on early drafts.
+            </p>
+        </section>
+        
+
+
+        <!-- Footer Section -->
+        <footer>
+            <p>&copy; 2024 INSIGHT Project Team.</p>
+        </footer>
+
+        <!-- Back to Top Button -->
+        <div id="back-to-top" class="back-to-top">↑ Back to Top</div>
+    </div>
+
+    <script src="/static/scripts.js"></script>
+</body>
+</html>
