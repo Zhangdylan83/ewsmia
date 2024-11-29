@@ -44,14 +44,14 @@ header {
 
 .name {
     font-size: 1.2em; 
-    font-weight: normal; 
+    font-weight: bold; 
     margin-bottom: 5px;
     color: #555;
 }
 
 .institution {
     font-size: 1em; 
-    color: #aaa; 
+    color: black; 
 }
 
 .header-content h1 {
