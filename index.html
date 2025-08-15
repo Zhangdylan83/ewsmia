@@ -20,7 +20,7 @@
                 <div class="authors">
                     <div class="author">
                         <p class="name" font-weight="bold">
-                            <a href="https://www.linkedin.com/in/wenbo-zhang-rochester/" target="_blank">Wenbo Zhang</a>
+                            <a href="https://zhangdylan83.github.io/" target="_blank">Wenbo Zhang</a>
                         </p>
                         <p class="institution">University of Rochester</p>
                     </div>
@@ -45,6 +45,8 @@
                         <i class="fa fa-github" aria-hidden="true"></i> Code
                     </a>
                 </div>
+                
+
                            
                 
             </div>
@@ -73,15 +75,24 @@
                 <strong>Our method achieves this using only WSI-level labels</strong>, making it both efficient and interpretable without requiring costly pixel-level annotations.
             </p>
             <div class="carousel">
-                <div class="image-wrapper" style="display: none;">
-                    <img src="imgs/test_001_zoom.png" alt="Zoomed Heatmap" class="carousel-img" />
+                <div class="image-wrapper" style="display: block;">
+                    <object data="imgs/test_001.pdf" type="application/pdf" width="100%" height="600px" style="border: 2px solid #007bff; border-radius: 8px;">
+                        <p>Your browser does not support PDFs. <a href="imgs/test_001.pdf" target="_blank">Download Paper 001</a></p>
+                    </object>
                 </div>
+                <div class="image-wrapper" style="display: none;">
+                    <object data="imgs/test_016.pdf" type="application/pdf" width="100%" height="600px" style="border: 2px solid #007bff; border-radius: 8px;">
+                        <p>Your browser does not support PDFs. <a href="imgs/test_016.pdf" target="_blank">Download Paper 016</a></p>
+                    </object>
+                </div>
+               
                 <div class="image-wrapper" style="display: none;">
                     <img src="imgs/test_121.png" alt="Yellow Box Zoom" class="carousel-img" />
                 </div>
-                <div class="image-wrapper" style="display: block;">
+                <div class="image-wrapper" style="display: none;">
                     <img src="imgs/test_075.png" alt="Original Image" class="carousel-img" />
                 </div>
+                
             </div>
             <div class="caption">
                 <p id="carousel-caption">Example WSI heatmap</p>
@@ -120,12 +131,18 @@
                 This design enables INSIGHT to generate heatmaps that closely align with ground-truth diagnostic regions, offering both accuracy and transparency. 
                 By requiring only image-level labels, INSIGHT significantly reduces the annotation burden while delivering state-of-the-art classification and weakly supervised segmentation performance.
                 <div id="insight-architecture" class="image-text-section">
-                    <img src="imgs/Insight_architecture_revised.png" alt="INSIGHT Architecture" class="responsive-img">
+                    <img src="imgs/INSIGHT_diagram.png" alt="INSIGHT Architecture" class="responsive-img">
                     <p>
-                        <strong>INSIGHT's inputs and architecture:</strong> 
-                        (a) Images are pre-processed to extract pre-trained features from each CT slice or WSI patch. 
-                        (b) These features are processed through the Detection and Context modules to generate slice- or patch-level heatmaps by incorporating both fine-grained details and broader contextual information. 
-                        (c) Heatmaps are aggregated across slices or patches to produce a binary prediction for each category along with interpretable heatmaps.
+                        <strong>Overview of the INSIGHT framework:</strong> 
+                        (a) Input images (WSIs or CT volumes)
+are preprocessed and transformed into spatial embeddings using a pretrained
+encoder. (b) Each slice or patch embedding is processed by INSIGHT, which
+consists of a detection module to capture fine-grained signals and a context sup-
+pression module to reduce false positives. This produces patch-level heatmaps for
+each category, which are then aggregated to generate whole-slide or volume-level
+heatmaps. Final predictions for each category are obtained via SmoothMax pool-
+ing over the heatmaps. Throughout this process, spatial resolution is preserved,
+encouraging the model to produce reliable and interpretable heatmaps.
                     </p>
                 </div>
             </span>
@@ -150,7 +167,7 @@
                             <th colspan="2" style="padding: 10px;">
                                 <a href="https://camelyon16.grand-challenge.org/Data/" target="_blank" style="text-decoration: underline; color: blue; font-weight: bold;">CAMELYON16</a>
                             </th>
-                            <th colspan="5" style="padding: 10px; border-left: 1px solid #ddd;">
+                            <th colspan="4" style="padding: 10px; border-left: 1px solid #ddd;">
                                 <a href="https://www.bracs.icar.cnr.it/background/" target="_blank" style="text-decoration: underline; color: blue; font-weight: bold;">BRACS</a>
                             </th>
                             
@@ -162,7 +179,6 @@
                             <th style="padding: 10px;">FEA</th>
                             <th style="padding: 10px;">DCIS</th>
                             <th style="padding: 10px;">Invasive</th>
-                            <th style="padding: 10px;">Macro AUC</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -176,7 +192,6 @@
                             <td style="padding: 10px;">0.744</td>
                             <td style="padding: 10px;">0.804</td>
                             <td style="padding: 10px;">0.995</td>
-                            <td style="padding: 10px;">0.800</td>
                         </tr>
                         <tr>
                             <td style="padding: 10px; border-right: 1px solid #ddd;">
@@ -188,7 +203,6 @@
                             <td style="padding: 10px;">0.757</td>
                             <td style="padding: 10px;">0.833</td>
                             <td style="padding: 10px;">0.999</td>
-                            <td style="padding: 10px;">0.800</td>
                         </tr>
                         <tr>
                             <td style="padding: 10px; border-right: 1px solid #ddd;">
@@ -200,7 +214,6 @@
                             <td style="padding: 10px;">0.687</td>
                             <td style="padding: 10px;">0.828</td>
                             <td style="padding: 10px;">0.998</td>
-                            <td style="padding: 10px;">0.804</td>
                         </tr>
                         <tr>
                             <td style="padding: 10px; border-right: 1px solid #ddd;">
@@ -212,7 +225,17 @@
                             <td style="padding: 10px;">0.653</td>
                             <td style="padding: 10px;">0.769</td>
                             <td style="padding: 10px;">0.989</td>
-                            <td style="padding: 10px;">0.764</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border-right: 1px solid #ddd;">
+                                <a href="https://github.com/wi-kg/wi-kg" target="_blank" style="text-decoration: underline; color: blue;">WiKG</a>
+                            </td>
+                            <td style="padding: 10px;">0.967</td>
+                            <td style="padding: 10px;">66.1 ± 24.2</td>
+                            <td style="padding: 10px; border-left: 1px solid #ddd;">0.454</td>
+                            <td style="padding: 10px;">0.653</td>
+                            <td style="padding: 10px;">0.771</td>
+                            <td style="padding: 10px;">0.990</td>
                         </tr>
                         <tr>
                             <td style="padding: 10px; font-weight: bold; border-right: 1px solid #ddd;">INSIGHT(Ours)</td>
@@ -222,7 +245,6 @@
                             <td style="padding: 10px; font-weight: bold;">0.790</td>
                             <td style="padding: 10px; font-weight: bold;">0.837</td>
                             <td style="padding: 10px; font-weight: bold;">0.999</td>
-                            <td style="padding: 10px; font-weight: bold;">0.840</td>
                         </tr>
                     </tbody>
                 </table>
@@ -243,14 +265,7 @@
                     <tbody>
                         <!-- Classification rows -->
                         <tr>
-                            <td rowspan="3" style="padding: 15px; vertical-align: middle; font-weight: bold; border-bottom: 2px solid #ddd;">Classification</td>
-                            <td style="padding: 10px;">
-                                <a href="https://arxiv.org/abs/2203.03074" target="_blank" style="text-decoration: underline; color: blue;">ViT-COVID</a>
-                            </td>
-                            <td style="padding: 10px;">0.6/0.2/0.2 split</td>
-                            <td style="padding: 10px;">0.870</td>
-                        </tr>
-                        <tr style="background-color: #f9f9f9;">
+                            <td rowspan="2" style="padding: 15px; vertical-align: middle; font-weight: bold; border-bottom: 2px solid #ddd;">Classification</td>
                             <td style="padding: 10px;">
                                 <a href="https://arxiv.org/pdf/2102.06169" target="_blank" style="text-decoration: underline; color: blue;">PR-3D-CNN</a>
                             </td>
